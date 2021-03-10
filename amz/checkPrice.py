@@ -1,4 +1,4 @@
-from .models import Users
+from .models import users
 import smtplib,ssl
 import datetime
 import time
@@ -84,8 +84,8 @@ def send_mail(email,link,price,creation_price):
 
 
 def checkDays():
-    users = Users.objects.all()
-    for i in users:
+    userss = users.objects.all()
+    for i in userss:
         c_date = datetime.datetime.now().date()
         creation_date_full = i.creation_date
         creation_year = int(creation_date_full[0:4])
@@ -100,11 +100,11 @@ def checkDays():
 
 def check():
     checkDays()
-    users = Users.objects.all()
-    if(len(users) == 0):
+    usersss = users.objects.all()
+    if(len(usersss) == 0):
         pass
     else:
-        for i in users:
+        for i in usersss:
             id = i.id
             url = i.item
             creation_price = i.creation_price
@@ -121,7 +121,7 @@ def check():
 
             if(final_check_price == trigger_price or final_check_price<creation_price):
                 send_mail(email,url,price,creation_price)
-                Users.objects.filter(id=id).delete()
+                users.objects.filter(id=id).delete()
 
             print(f"link:{url},creation_price:{creation_price},creation_date:{creation_date},trigger_price:{trigger_price},email:{email}")
             time.sleep(100)
