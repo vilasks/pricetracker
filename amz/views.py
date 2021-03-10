@@ -4,7 +4,7 @@ import requests
 import datetime
 import random
 from bs4 import BeautifulSoup
-from .models import Users
+from .models import users
 import threading
 import amz.checkPrice as pricecheck
 # Create your views here.
@@ -86,7 +86,7 @@ def submit_email(request):
 
     if(request.method == "POST"):
         url = request.POST['url']
-        total_user = Users.objects.all()
+        total_user = users.objects.all()
 
         if(len(total_user) >= 100):
             return HttpResponse("Users Limit Reached")
@@ -95,7 +95,7 @@ def submit_email(request):
         if(len(total_user) == 0):
             pass
         else:
-            email_exists = Users.objects.filter(email=Email)
+            email_exists = users.objects.filter(email=Email)
             if(email_exists.exists()):
                 return HttpResponse("Email Exists In our Please use another Email")
 
@@ -112,7 +112,7 @@ def submit_email(request):
         else:
             trigger_price = int(request.POST['target_price'])
 
-        user = Users(email=Email,
+        user = users(email=Email,
                     item=url,
                     creation_date=creation_date,
                     creation_price=creation_price,
