@@ -71,7 +71,7 @@ def productPage(request):
         soup = BeautifulSoup(page.content, 'html.parser')
         title = soup.title.string
         image = soup.find(id="landingImage")
-        image_url = image.get('src')
+        image_url = image['src']
         price1 = soup.find(id="priceblock_ourprice")
         price = price1.string
         '''url = "www.google.com"
