@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from .checkPrice import check
+from amz.checkPrice import check
 sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=1)
