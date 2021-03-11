@@ -126,5 +126,5 @@ STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
 CRONJOBS = [
-    ('* */5 * * *','amz.checkPrice.check')
+    ('*/1 * * * *','amz.checkPrice.check')
 ]
