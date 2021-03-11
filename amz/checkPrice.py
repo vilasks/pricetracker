@@ -81,7 +81,8 @@ def send_mail(email,link,price,creation_price):
     print("Email sent")
     server.quit()
 
-
+def checkcron():
+    print("cron Working")
 
 def checkDays():
     userss = users.objects.all()
@@ -94,11 +95,12 @@ def checkDays():
         creation_date_date = datetime.date(creation_year,creation_month,creation_date)
         no_of_days = c_date - creation_date_date
         if(no_of_days.day >= 7):
-            Users.objects.filter(id=i.id).delete()
+            users.objects.filter(id=i.id).delete()
         
 
 
 def check():
+    checkcron()
     checkDays()
     usersss = users.objects.all()
     if(len(usersss) == 0):
